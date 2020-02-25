@@ -1,21 +1,25 @@
-import React from 'react'
-import './ResetBtn.css'
+import React from 'react';
+import './ResetBtn.css';
 
-function ResetBtn(props){
+function ResetBtn(props) {
 
-  let {setText, setColor, setGreenCount, setRedCount, setGoldenCount} = props;
+  let { setText,
+    setStartColor,
+    setGreenCount,
+    setRedCount,
+    setGoldenCount } = props;
 
-  function reset(){
-    setText("Think of a Question")
-    setColor("black")
-    setGreenCount(0)
-    setGoldenCount(0)
-    setRedCount(0)
+  function reset() {
+    setText("Think of a Question");
+    setStartColor("black");
+    setGreenCount(0);
+    setGoldenCount(0);
+    setRedCount(0);
   }
 
-  return(
+  return (
     <button className="ResetBtn" onClick={reset}>Reset</button>
-  )
+  );
 }
 
 export default ResetBtn;
