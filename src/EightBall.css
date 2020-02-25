@@ -1,0 +1,19 @@
+.EightBall{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  margin: 10px auto;
+}
+
+.EightBall-text{
+  font-size: 20px;
+  font-family: arial;
+  transform: translate(-50%,-50%);
+  position: absolute;
+  color: white;
+  top: 42%;
+  left: 50%;
+}
