@@ -1,27 +1,34 @@
 import React, { useState } from 'react';
 import answers from './answersDefault';
-import ResetBtn from './ResetBtn';
+// import ResetBtn from './ResetBtn';
 import './EightBall.css';
 
 function EightBall(props) {
-  let [text, setText] = useState("Think of a Question");
-  let [startColor, setStartColor] = useState('black');
-  let [greenCount, setGreenCount] = useState(0);
-  let [goldenCount, setGoldenCount] = useState(0);
-  let [redCount, setRedCount] = useState(0);
+  const [text, setText] = useState("Think of a Question");
+  const [color, setColor] = useState('black');
+  const [greenCount, setGreenCount] = useState(0);
+  const [goldenCount, setGoldenCount] = useState(0);
+  const [redCount, setRedCount] = useState(0);
 
-  let randomIndex = Math.floor(Math.random() * props.answers.length);
-  let { msg, color } = props.answers[randomIndex];
+  const randomIndex = Math.floor(Math.random() * props.answers.length);
 
-  let bColor = { "background": startColor };
+  function reset(){
+    setText("Think of a Question");
+    setColor("black");
+    setGreenCount(0);
+    setGoldenCount(0);
+    setRedCount(0);
+  }
 
   function handleClick() {
-    if (color === 'green') setGreenCount(greenCount + 1);
-    if (color === 'goldenrod') setGoldenCount(goldenCount + 1);
-    if (color === 'red') setRedCount(redCount + 1);
-    // switch
+    //moving this in here allows us to use the variable color without reassigning it
+    const { msg, color } = props.answers[randomIndex]; 
+    if (color === 'green') setGreenCount(count => count + 1);
+    if (color === 'goldenrod') setGoldenCount(count => count + 1);
+    if (color === 'red') setRedCount(count => count + 1);
+  
     setText(msg);
-    setStartColor(color);
+    setColor(color);
   }
 
   return (
@@ -29,14 +36,12 @@ function EightBall(props) {
       <h3> Green: {greenCount} </h3>
       <h3> Golden-Rod: {goldenCount} </h3>
       <h3> Red: {redCount} </h3>
-      <div className="EightBall" style={bColor} onClick={handleClick}>
+      <div className="EightBall"
+        style={{ backgroundColor: color }}
+        onClick={handleClick}>
         <p className="EightBall-text"> {text} </p>
       </div>
-      <ResetBtn setText={setText}
-        setStartColor={setStartColor}
-        setGreenCount={setGreenCount}
-        setRedCount={setRedCount}
-        setGoldenCount={setGoldenCount} />
+      <button className="EightBall-reset" onClick={reset}>Reset</button>
     </div>
   )
 }
